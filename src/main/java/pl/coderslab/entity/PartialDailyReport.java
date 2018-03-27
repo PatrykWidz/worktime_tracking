@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,30 +16,30 @@ import javax.persistence.Table;
 public class PartialDailyReport {
 
 	/*** Start of list of attributes ***/
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private double manHours;
-	
+
 	private LocalTime startTime;
 	private LocalTime endTime;
-	
+
 	private LocalDate date;
-	
+
 	@ManyToOne
 	private Employee employee;
-	
+
 	@ManyToOne
 	private Project project;
-	
+
 	/*** End of list of attributes ***/
 
 	public PartialDailyReport() {
-		
+
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -67,14 +68,6 @@ public class PartialDailyReport {
 		this.endTime = endTime;
 	}
 
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
 	public Project getProject() {
 		return project;
 	}
@@ -94,4 +87,13 @@ public class PartialDailyReport {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
 }

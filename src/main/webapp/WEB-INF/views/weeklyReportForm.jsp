@@ -18,26 +18,11 @@
      	 <p>Hello there! It's ${currentDate} today. Would you like to report your worktime?</p>
      </div>
       <div class="row">
-        <div class="col-sm">
-          Monday
-        </div>
-        <div class="col-sm">
-          Tuesday
-        </div>
-        <div class="col-sm">
-          Wednesday
-        </div>
-        <div class="col-sm">
-          Thursday
-        </div>
-        <div class="col-sm">
-          Friday
-        </div>
-      </div>
-      <div class="row">
-      	<c:forEach items="${ currentWeek }" var="dayOfWeek">
+      	<c:forEach items="${ dayNames }" var="dayName" varStatus="status">
       		<div class="col-sm">
-      			${ dayOfWeek }
+      			<div class="row">${ dayName }</div>
+      			<div class="row">${ dayDates[status.index] }</div>
+      			<div class="row"><a href="/worktime-tracking/partial-daily-report/1/${ dayDates[status.index] }/add">Report</a></div>
       		</div>
       	</c:forEach>
       </div>

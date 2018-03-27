@@ -1,0 +1,25 @@
+WeeklyReport entity:
+
+id
+start date
+List<DailyReport>
+
+---------------
+
+Start of employment date --->
+
+Admin wprowadza dni wolne, te same dla wszystkich pracowników.
+
+Encje czasu:
+Week - start date, finish date, list of days
+Day - data
+
+
+
+Mam tydzień do rozliczenia, wielu pracowników rozlicza ten sam tydzień.
+Dla każdego pracownika muszę mieć instancję tego samego tygodnia.
+Każdy pracownik na przestrzeni czasu będzie miał do rozliczenia wiele tygodni (wiele raportów).
+
+Tydzień musi mieć status - rozliczony lub nierozliczony.
+
+Każdy dzień w tygodniu musi mieć status - aktywny lub nieaktywny - pozwoli to na obsługę dni wolnych.
