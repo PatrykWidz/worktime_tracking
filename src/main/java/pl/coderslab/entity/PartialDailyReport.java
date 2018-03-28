@@ -3,7 +3,6 @@ package pl.coderslab.entity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,10 +28,10 @@ public class PartialDailyReport {
 	private LocalDate date;
 
 	@ManyToOne
-	private Employee employee;
-
-	@ManyToOne
 	private Project project;
+	
+	@ManyToOne
+	private WeeklyReport weeklyReport;
 
 	/*** End of list of attributes ***/
 
@@ -80,14 +79,6 @@ public class PartialDailyReport {
 		this.manHours = manHours;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
 	public LocalDate getDate() {
 		return date;
 	}
@@ -96,4 +87,11 @@ public class PartialDailyReport {
 		this.date = date;
 	}
 
+	public WeeklyReport getWeeklyReport() {
+		return weeklyReport;
+	}
+
+	public void setWeeklyReport(WeeklyReport weeklyReport) {
+		this.weeklyReport = weeklyReport;
+	}
 }

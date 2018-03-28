@@ -1,34 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+<!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>Weekly report</title>
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Report your worktime!</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-     	 <p>Hello there! It's ${currentDate} today. Would you like to report your worktime?</p>
-     </div>
-      <div class="row">
-      	<c:forEach items="${ dayNames }" var="dayName" varStatus="status">
-      		<div class="col-sm">
-      			<div class="row">${ dayName }</div>
-      			<div class="row">${ dayDates[status.index] }</div>
-      			<div class="row"><a href="/worktime-tracking/partial-daily-report/1/${ dayDates[status.index] }/add">Report</a></div>
-      		</div>
-      	</c:forEach>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+<!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+	rel="stylesheet" type="text/css">
+
+<!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/normalize.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/skeleton.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/custom.css">
+
+<!-- Favicon –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h5>Weekly report</h5>
+		</div>
+		<div class="row">
+			<c:forEach items="${ dayNames }" var="dayName" varStatus="status">
+				<a href="/worktime-tracking/partial-daily-report/${ dayDates[status.index] }">
+					<div class="two columns with-border">
+						<div class="row">
+							${ dayName } <br> ${ dayDates[status.index] }
+						</div>
+					</div>
+				</a>
+			</c:forEach>
+		</div>
+	</div>
+</body>
 </html>

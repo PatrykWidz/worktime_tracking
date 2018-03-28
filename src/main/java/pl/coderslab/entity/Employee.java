@@ -27,7 +27,7 @@ public class Employee {
 	private LocalDate dateOfEmployment;
 
 	@OneToMany(mappedBy = "employee")
-	public List<PartialDailyReport> partialDailyReports = new ArrayList<>();
+	public List<WeeklyReport> weeklyReports = new ArrayList<>();
 	
 	@ManyToMany
 	public List<Project> projects = new ArrayList<>();
@@ -74,19 +74,27 @@ public class Employee {
 		return this.firstName + " " + this.lastName;
 	}
 
-	public List<PartialDailyReport> getPartialDailyReports() {
-		return partialDailyReports;
-	}
-
-	public void setPartialDailyReports(List<PartialDailyReport> partialDailyReports) {
-		this.partialDailyReports = partialDailyReports;
-	}
-
 	public List<Project> getProjects() {
 		return projects;
 	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+
+	public LocalDate getDateOfEmployment() {
+		return dateOfEmployment;
+	}
+
+	public void setDateOfEmployment(LocalDate dateOfEmployment) {
+		this.dateOfEmployment = dateOfEmployment;
+	}
+
+	public List<WeeklyReport> getWeeklyReports() {
+		return weeklyReports;
+	}
+
+	public void setWeeklyReports(List<WeeklyReport> weeklyReports) {
+		this.weeklyReports = weeklyReports;
 	}
 }

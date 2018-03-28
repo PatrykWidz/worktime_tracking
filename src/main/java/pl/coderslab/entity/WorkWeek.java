@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 @Table(name = "work_week")
 public class WorkWeek {
@@ -19,6 +21,7 @@ public class WorkWeek {
 	private Long id;
 
 	@Column(unique = true) // Must be monday TODO: validation
+	@NaturalId
 	private LocalDate startDate;
 
 	public WorkWeek() {

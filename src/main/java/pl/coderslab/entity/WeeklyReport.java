@@ -1,5 +1,6 @@
 package pl.coderslab.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,9 @@ public class WeeklyReport {
 	
 	@ManyToOne
 	private Employee employee;
+	
+	@OneToMany(mappedBy = "weeklyReport")
+	List<PartialDailyReport> partialDailyReport = new ArrayList<>();
 
 	public WeeklyReport() {
 		
@@ -51,5 +56,21 @@ public class WeeklyReport {
 
 	public void setWorkWeek(WorkWeek workWeek) {
 		this.workWeek = workWeek;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public List<PartialDailyReport> getPartialDailyReport() {
+		return partialDailyReport;
+	}
+
+	public void setPartialDailyReport(List<PartialDailyReport> partialDailyReport) {
+		this.partialDailyReport = partialDailyReport;
 	}
 }
