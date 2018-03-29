@@ -17,14 +17,10 @@ import pl.coderslab.entity.WeeklyReport;
 import pl.coderslab.repository.DailyReportRepository;
 import pl.coderslab.repository.EmployeeRepository;
 import pl.coderslab.repository.WeeklyReportRepository;
-import pl.coderslab.repository.WorkWeekRepository;
 import pl.coderslab.service.TimeOperations;
 
 @Controller
 public class WeeklyReportController {
-
-	@Autowired
-	private WorkWeekRepository workWeekRepo;
 
 	@Autowired
 	private WeeklyReportRepository weeklyReportRepo;
@@ -60,6 +56,7 @@ public class WeeklyReportController {
 				dailyReportRepo.save(dailyReport);
 			}
 			
+			weeklyReport = weeklyReportRepo.findByStartDateAndEmployeeId(firstDayOfWeek, employeeId);
 			model.addAttribute("weeklyReport", weeklyReport);
 			
 		} else {

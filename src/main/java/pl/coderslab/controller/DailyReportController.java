@@ -46,6 +46,16 @@ public class DailyReportController {
 		model.addAttribute("dailyReport", dailyReport);
 		model.addAttribute("partialDailyReport", partialDailyReport);
 		
+		List<PartialDailyReport> reports = dailyReport.getPartialDailyReports();
+		
+		double manHourSum = 0.0;
+		
+		for(PartialDailyReport report : reports) {
+			manHourSum += report.getManHours();
+		}
+		
+		model.addAttribute("manHourSum", manHourSum);
+		
 		return "dailyReport";
 	}
 	

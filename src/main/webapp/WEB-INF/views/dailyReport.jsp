@@ -6,87 +6,104 @@
 <head>
 <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Partial daily report</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<title>Partial daily report</title>
+<meta name="description" content="">
+<meta name="author" content="">
 
-  <!-- Mobile Specific Metas
+<!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
+<!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+	rel="stylesheet" type="text/css">
 
-  <!-- CSS
+<!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/normalize.css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skeleton.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/normalize.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/skeleton.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/custom.css">
 
-  <!-- Favicon
+<!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
 	<div class="container">
-		<h5>Your worktime for ${ dailyReport.dayName } ${ dailyReport.date }</h5>
-		<p><a href="${pageContext.request.contextPath}/weekly-report/${ dailyReport.weeklyReport.startDate }/${ dailyReport.weeklyReport.employee.id }">Go back to weekly panel</a></p>
-	</div>
-	<div class="container">
-		<table class="">
-			<thead class="">
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Project's symbol and name</th>
-					<th scope="col">Start hour</th>
-					<th scope="col">End hour</th>
-					<th scope="col">Time spent [h]</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${ dailyReport.partialDailyReports }" var="partialDailyReport" varStatus="loop">
+		<div class=row>
+			<h5>Your worktime for ${ dailyReport.dayName } ${ dailyReport.date }</h5>
+		</div>
+		<div class="row">
+			<table class="reports-tab">
+				<thead>
 					<tr>
-						<td>${ loop.index + 1 }</td>
-						<td>${ partialDailyReport.project.symbol } ${ partialDailyReport.project.name }</td>
-						<td>${ partialDailyReport.startTime }</td>
-						<td>${ partialDailyReport.endTime }</td>
-						<td>${ partialDailyReport.manHours }</td>
-						<td><a href="${pageContext.request.contextPath}/daily-report/partial-daily-report/${ partialDailyReport.id }/delete">Delete</a></td>
+						<th>#</th>
+						<th>Project's symbol and name</th>
+						<th>Start hour</th>
+						<th>End hour</th>
+						<th>Hours spent</th>
+						<th class="centered">Action</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<div class="container">
-		<form:form method="POST" modelAttribute="partialDailyReport" action="">
-			<form:hidden path="id" />
-			<div class="row">
-				<div class="col-sm">
-					<div class="row">Pick project</div>
+				</thead>
+				<tbody>
+					<c:forEach items="${ dailyReport.partialDailyReports }"
+						var="partialDailyReport" varStatus="loop">
+						<tr>
+							<td>${ loop.index + 1 }</td>
+							<td>${ partialDailyReport.project.symbol }${ partialDailyReport.project.name }</td>
+							<td class="centered">${ partialDailyReport.startTime }</td>
+							<td class="centered">${ partialDailyReport.endTime }</td>
+							<td class="centered">${ partialDailyReport.manHours }</td>
+							<td>
+								<form class="myForm"
+									action="${pageContext.request.contextPath}/daily-report/partial-daily-report/${ partialDailyReport.id }/delete">
+									<input class="button" type="submit" value="Delete" />
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><strong>Sum</strong></td>
+						<td>${ manHourSum }</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<form:form method="POST" modelAttribute="partialDailyReport"
+				action="">
+				<form:hidden path="id" />
+				<div class="row">
 					<div class="row">
+						Pick project<br>
 						<form:select path="project.id">
 							<form:options items="${ projects }" itemValue="id"
 								itemLabel="symbolAndName" />
 						</form:select>
 					</div>
-				</div>
-				<div class="col-sm">
-					<div class="row">Select start time</div>
 					<div class="row">
+						Select start time<br>
 						<form:input type="time" path="startTime" />
 					</div>
-				</div>
-				<div class="col-sm">
-					<div class="row">Select end time</div>
 					<div class="row">
+						Select end time<br>
 						<form:input type="time" path="endTime" />
+						<div class="row">
+							<input type="submit" value="submit" />
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row"><input type="submit" value="submit"/></div>
-		</form:form>
+			</form:form>
+		</div>
 	</div>
 </body>
 </html>

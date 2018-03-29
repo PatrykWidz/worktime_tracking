@@ -21,3 +21,24 @@ a:hover {
 div.hovered {
 	background-color: #b6e5e6;
 }
+
+div.user {
+	margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding: 25px;
+    max-width: 480px;
+}
+
+div.menu {
+	margin-top: 25px;
+}
+
+.myForm {
+	margin-bottom: 0rem;
+}
+
+.centered {
+	text-align: center;
+}

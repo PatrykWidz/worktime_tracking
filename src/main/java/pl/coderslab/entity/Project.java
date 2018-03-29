@@ -89,4 +89,12 @@ public class Project {
 	public String getSymbolAndName() {
 		return this.symbol + " " + this.name;
 	}
+
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
+	}
 }
