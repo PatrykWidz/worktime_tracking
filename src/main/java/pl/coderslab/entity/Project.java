@@ -24,7 +24,8 @@ public class Project {
 	private String symbol;
 	private String name;
 	private LocalDate deadline;
-
+	private double value;
+	
 	@ManyToMany(mappedBy = "projects")
 	private List<Employee> employees = new ArrayList<>();
 
