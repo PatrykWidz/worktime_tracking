@@ -37,11 +37,11 @@
 			<h5>Weekly report</h5>
 		</div>
 		<div class="row">
-			<c:forEach items="${ dayNames }" var="dayName" varStatus="status">
-				<a href="/worktime-tracking/partial-daily-report/${ dayDates[status.index] }">
-					<div class="two columns with-border">
-						<div class="row">
-							${ dayName } <br> ${ dayDates[status.index] }
+			<c:forEach items="${ weeklyReport.dailyReports }" var="dailyReport" varStatus="status">
+				<a href="/worktime-tracking/daily-report/${ dailyReport.id }">
+					<div class="two columns">
+						<div class="row with-border">
+							${ dailyReport.dayName } <br> ${ dailyReport.date }
 						</div>
 					</div>
 				</a>
@@ -49,4 +49,5 @@
 		</div>
 	</div>
 </body>
+	<script src="${pageContext.request.contextPath}/resources/js/weeklyReport.js"></script>
 </html>

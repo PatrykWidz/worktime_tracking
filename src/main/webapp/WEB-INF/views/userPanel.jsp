@@ -35,7 +35,7 @@
 		<div class="row">
 			<div class="three columns"><img src="${pageContext.request.contextPath}/resources/img/avatar.png"/></div>
 			<div class="six columns">
-				<div class="row"><p>${ fullName }</p></div>
+				<div class="row"><p>${ employee.fullName }</p></div>
 				<div class="row"><p>Position</p></div>
 				<div class="row"><p>My status</p></div>
 			</div>
@@ -44,7 +44,7 @@
 				<p>What would you like to do?</p>
 		</div>
 		<div class="row">
-				<p><a href="/worktime-tracking//weekly-report/1">Report my worktime</a></p>
+				<p><a href="/worktime-tracking/weekly-report/${ currentDate }/${ employee.id }">Report my worktime</a></p>
 		</div>
 	</div>
 </body>

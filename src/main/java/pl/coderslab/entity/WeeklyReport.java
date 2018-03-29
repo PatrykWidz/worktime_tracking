@@ -1,9 +1,11 @@
 package pl.coderslab.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,22 +20,21 @@ public class WeeklyReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String status;
-	
-	@ManyToOne
-	private WorkWeek workWeek;
-	
+
+	private String status = "0"; // 0 - notconfirmed, 1 - confirmed
+
+	private LocalDate startDate;
+
 	@ManyToOne
 	private Employee employee;
-	
-	@OneToMany(mappedBy = "weeklyReport")
-	List<PartialDailyReport> partialDailyReport = new ArrayList<>();
+
+	@OneToMany(mappedBy = "weeklyReport", fetch = FetchType.EAGER)
+	List<DailyReport> dailyReports = new ArrayList<>();
 
 	public WeeklyReport() {
 		
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -50,14 +51,6 @@ public class WeeklyReport {
 		this.status = status;
 	}
 
-	public WorkWeek getWorkWeek() {
-		return workWeek;
-	}
-
-	public void setWorkWeek(WorkWeek workWeek) {
-		this.workWeek = workWeek;
-	}
-
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -66,11 +59,19 @@ public class WeeklyReport {
 		this.employee = employee;
 	}
 
-	public List<PartialDailyReport> getPartialDailyReport() {
-		return partialDailyReport;
+	public List<DailyReport> getDailyReports() {
+		return dailyReports;
 	}
 
-	public void setPartialDailyReport(List<PartialDailyReport> partialDailyReport) {
-		this.partialDailyReport = partialDailyReport;
+	public void setDailyReports(List<DailyReport> dailyReports) {
+		this.dailyReports = dailyReports;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
 	}
 }

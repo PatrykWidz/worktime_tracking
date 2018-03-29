@@ -30,7 +30,8 @@
 </head>
 <body>
 	<div class="container">
-		<h5>Your worktime for ${dayName} ${dayDate}</h5>
+		<h5>Your worktime for ${ dailyReport.dayName } ${ dailyReport.date }</h5>
+		<p><a href="${pageContext.request.contextPath}/weekly-report/${ dailyReport.weeklyReport.startDate }/${ dailyReport.weeklyReport.employee.id }">Go back to weekly panel</a></p>
 	</div>
 	<div class="container">
 		<table class="">
@@ -41,16 +42,18 @@
 					<th scope="col">Start hour</th>
 					<th scope="col">End hour</th>
 					<th scope="col">Time spent [h]</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ partialReports }" var="partialReport">
+				<c:forEach items="${ dailyReport.partialDailyReports }" var="partialDailyReport" varStatus="loop">
 					<tr>
-						<td>1</td>
-						<td>${ partialReport.project.symbol } ${ partialReport.project.name }</td>
-						<td>${ partialReport.startTime }</td>
-						<td>${ partialReport.endTime }</td>
-						<td>${ partialReport.manHours }</td>
+						<td>${ loop.index + 1 }</td>
+						<td>${ partialDailyReport.project.symbol } ${ partialDailyReport.project.name }</td>
+						<td>${ partialDailyReport.startTime }</td>
+						<td>${ partialDailyReport.endTime }</td>
+						<td>${ partialDailyReport.manHours }</td>
+						<td><a href="${pageContext.request.contextPath}/daily-report/partial-daily-report/${ partialDailyReport.id }/delete">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

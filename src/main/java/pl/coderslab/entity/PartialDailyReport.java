@@ -1,6 +1,5 @@
 package pl.coderslab.entity;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
@@ -24,14 +23,12 @@ public class PartialDailyReport {
 
 	private LocalTime startTime;
 	private LocalTime endTime;
-
-	private LocalDate date;
-
+	
 	@ManyToOne
 	private Project project;
 	
 	@ManyToOne
-	private WeeklyReport weeklyReport;
+	private DailyReport dailyReport;
 
 	/*** End of list of attributes ***/
 
@@ -79,19 +76,11 @@ public class PartialDailyReport {
 		this.manHours = manHours;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public DailyReport getDailyReport() {
+		return dailyReport;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public WeeklyReport getWeeklyReport() {
-		return weeklyReport;
-	}
-
-	public void setWeeklyReport(WeeklyReport weeklyReport) {
-		this.weeklyReport = weeklyReport;
+	public void setDailyReport(DailyReport dailyReport) {
+		this.dailyReport = dailyReport;
 	}
 }
