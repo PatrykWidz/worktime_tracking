@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<html>
 <head>
 <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <meta charset="utf-8">
-<title>Weekly report</title>
+<title>Administrator panel</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -28,29 +30,45 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/custom.css">
 
-<!-- Favicon –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
-	<div class="container menu">
-		<div class="row">
-			<h5>Weekly report</h5>
+	<form:form action="" method="POST" modelAttribute="employee">
+		<div class="container">
+			<div class=row>
+				<p>
+					<strong>Add a new employee</strong>
+				</p>
+			</div>
+
+			<form:hidden path="id" />
+			<div class="row">
+				<div class="three columns">
+					First name<br>
+					<form:input path="firstName" />
+				</div>
+				<div class="three columns">
+					Last name<br>
+					<form:input path="lastName" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="three columns">
+					Day of employment
+					<form:input type="date" path="dateOfEmployment" />
+				</div>
+				<div class="three columns">
+					Man hour cost
+					<form:input path="manHourCost" />
+				</div>
+			</div>
+			<div class="row">
+				<input type="submit" value="Submit" />
+			</div>
 		</div>
-		<div class="row">
-			<c:forEach items="${ weeklyReport.dailyReports }" var="dailyReport" varStatus="status">
-				<a href="/worktime-tracking/daily-report/${ dailyReport.id }">
-					<div class="two columns">
-						<div class="row with-border">
-							${ dailyReport.dayName } <br> ${ dailyReport.date }
-						</div>
-					</div>
-				</a>
-			</c:forEach>
-		</div>
-	<div class="row" style="padding: 10px">
-		<p><a href="${pageContext.request.contextPath}/user/${ weeklyReport.employee.id }/panel">Go back to user panel</a></p>
-	</div>
-	</div>
+	</form:form>
 </body>
-	<script src="${pageContext.request.contextPath}/resources/js/weeklyReport.js"></script>
 </html>

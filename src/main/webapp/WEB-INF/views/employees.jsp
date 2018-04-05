@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html>
 <head>
 <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <meta charset="utf-8">
-<title>Weekly report</title>
+<title>Administrator panel</title>
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -28,29 +29,37 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/custom.css">
 
-<!-- Favicon –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
-	<div class="container menu">
+	<div class="container">
+		<h4>List of employees</h4>
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Date of employment</th>
+					<th>Man hour cost</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+				<c:forEach items="${ employees }" var="employee" varStatus="loop">
+					<tr>
+						<td> ${ loop.index + 1 } </td>
+						<td> ${ employee.fullName } </td>
+						<td> ${ employee.dateOfEmployment } </td>
+						<td> ${ employee.manHourCost } </td>
+						<td> Edit Delete </td>
+					</tr>
+				</c:forEach>
+		</table>
 		<div class="row">
-			<h5>Weekly report</h5>
+			<a href="${pageContext.request.contextPath}/employee/add">Add new employee</a>
 		</div>
-		<div class="row">
-			<c:forEach items="${ weeklyReport.dailyReports }" var="dailyReport" varStatus="status">
-				<a href="/worktime-tracking/daily-report/${ dailyReport.id }">
-					<div class="two columns">
-						<div class="row with-border">
-							${ dailyReport.dayName } <br> ${ dailyReport.date }
-						</div>
-					</div>
-				</a>
-			</c:forEach>
-		</div>
-	<div class="row" style="padding: 10px">
-		<p><a href="${pageContext.request.contextPath}/user/${ weeklyReport.employee.id }/panel">Go back to user panel</a></p>
-	</div>
 	</div>
 </body>
-	<script src="${pageContext.request.contextPath}/resources/js/weeklyReport.js"></script>
 </html>

@@ -38,6 +38,11 @@
 		<div class=row>
 			<h5>Your worktime for ${ dailyReport.dayName } ${ dailyReport.date }</h5>
 		</div>
+		<div class=row>
+			<form class="myForm" action="${pageContext.request.contextPath}/weekly-report/${ dailyReport.date }/${ dailyReport.weeklyReport.employee.id }">
+				<input class="button" type="submit" value="Go back" />
+			</form>
+		</div>
 		<div class="row">
 			<table class="reports-tab">
 				<thead>
@@ -55,7 +60,7 @@
 						var="partialDailyReport" varStatus="loop">
 						<tr>
 							<td>${ loop.index + 1 }</td>
-							<td>${ partialDailyReport.project.symbol }${ partialDailyReport.project.name }</td>
+							<td>${ partialDailyReport.project.symbolAndName }</td>
 							<td class="centered">${ partialDailyReport.startTime }</td>
 							<td class="centered">${ partialDailyReport.endTime }</td>
 							<td class="centered">${ partialDailyReport.manHours }</td>
@@ -71,8 +76,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><strong>Sum</strong></td>
-						<td>${ manHourSum }</td>
+						<td class="centered"><strong>Sum</strong></td>
+						<td class="centered">${ manHourSum }</td>
 						<td></td>
 					</tr>
 				</tbody>

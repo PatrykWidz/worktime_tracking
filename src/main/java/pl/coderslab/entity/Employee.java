@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import pl.coderslab.service.TimeOperations;
+
 @Entity
 @Table(name="employees")
 public class Employee {
@@ -86,8 +88,8 @@ public class Employee {
 		return dateOfEmployment;
 	}
 
-	public void setDateOfEmployment(LocalDate dateOfEmployment) {
-		this.dateOfEmployment = dateOfEmployment;
+	public void setDateOfEmployment(String dateOfEmployment) {
+		this.dateOfEmployment = TimeOperations.parseDateFromString(dateOfEmployment);
 	}
 
 	public List<WeeklyReport> getWeeklyReports() {
