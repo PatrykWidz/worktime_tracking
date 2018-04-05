@@ -47,13 +47,6 @@ public class TimeOperations {
 		return daysOfWeekNames;
 	}
 
-	public static LocalDate parseDateFromString(String dateStr) {
-
-		LocalDate date = LocalDate.parse(dateStr);
-
-		return date;
-	}
-
 	public static double calculateTimeRange(LocalTime start, LocalTime end) {
 
 		Duration timeElapsed = Duration.between(start, end);
