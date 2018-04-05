@@ -17,7 +17,6 @@ import pl.coderslab.entity.WeeklyReport;
 import pl.coderslab.repository.DailyReportRepository;
 import pl.coderslab.repository.EmployeeRepository;
 import pl.coderslab.repository.WeeklyReportRepository;
-import pl.coderslab.service.TimeOperations;
 
 @Controller
 public class WeeklyReportController {
