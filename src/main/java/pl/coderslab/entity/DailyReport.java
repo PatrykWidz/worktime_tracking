@@ -50,8 +50,8 @@ public class DailyReport {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDate(String date) {
+		this.date = LocalDate.parse(date);
 	}
 
 	public String getDayName() {
