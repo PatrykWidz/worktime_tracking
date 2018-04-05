@@ -97,11 +97,11 @@
 					</div>
 					<div class="row">
 						Select start time<br>
-						<form:input type="time" path="startTime" />
+						<form:input type="text" path="startTime" />
 					</div>
 					<div class="row">
 						Select end time<br>
-						<form:input type="time" path="endTime" />
+						<form:input type="text" path="endTime" />
 						<div class="row">
 							<input type="submit" value="submit" />
 						</div>
