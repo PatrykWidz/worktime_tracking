@@ -34,7 +34,7 @@ public class WeeklyReportController {
 	@GetMapping("/weekly-report/{currentDate}/{employeeId}")
 	public String weeklyReport(@PathVariable String currentDate, @PathVariable Long employeeId, Model model) {
 
-		LocalDate date = TimeOperations.parseDateFromString(currentDate);
+		LocalDate date = LocalDate.parse(currentDate);
 		LocalDate firstDayOfWeek = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 		
 		if ( ! ( weeklyReportRepo.existsByStartDateAndEmployeeId(firstDayOfWeek, employeeId) ) ) {
@@ -49,7 +49,7 @@ public class WeeklyReportController {
 			for (int i = 0; i < 5; i++) {
 				DailyReport dailyReport = new DailyReport();
 				
-				dailyReport.setDate(firstDayOfWeek.plusDays(i));
+				dailyReport.setDate(firstDayOfWeek.plusDays(i).toString());
 				dailyReport.setDayName(firstDayOfWeek.plusDays(i).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
 				dailyReport.setWeeklyReport(weeklyReport);
 				

@@ -2,9 +2,12 @@ package pl.coderslab.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +63,11 @@ public class DailyReportController {
 	}
 	
 	@PostMapping("/{dailyReportId}")
-	public String save(@ModelAttribute PartialDailyReport partialDailyReport, @PathVariable Long dailyReportId) {
+	public String save(@Valid @ModelAttribute PartialDailyReport partialDailyReport, BindingResult bindingResult, @PathVariable Long dailyReportId) {
+		
+		if (bindingResult.hasErrors()) {
+			return "dailyReport";
+		}
 		
 		//Calculate man-hours by taking start time and end time
 		double manHours = TimeOperations.calculateTimeRange(partialDailyReport.getStartTime(), partialDailyReport.getEndTime());
