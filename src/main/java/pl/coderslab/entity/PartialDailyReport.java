@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "partial_daily_reports")
@@ -21,7 +24,12 @@ public class PartialDailyReport {
 
 	private double manHours;
 
+	@NotNull(message = "This field cannot be empty")
+	@DateTimeFormat(pattern = "hh:mm")
 	private LocalTime startTime;
+	
+	@NotNull(message = "This field cannot be empty")
+	@DateTimeFormat(pattern = "hh:mm")
 	private LocalTime endTime;
 	
 	@ManyToOne
@@ -52,16 +60,17 @@ public class PartialDailyReport {
 		return startTime;
 	}
 
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
+	public void setStartTime(String startTime) {
+		
+		this.startTime = LocalTime.parse(startTime);
 	}
 
 	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
+	public void setEndTime(String endTime) {
+		this.endTime = LocalTime.parse(endTime);
 	}
 
 	public Project getProject() {
