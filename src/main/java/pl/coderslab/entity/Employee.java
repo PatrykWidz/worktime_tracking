@@ -89,7 +89,7 @@ public class Employee {
 	}
 
 	public void setDateOfEmployment(String dateOfEmployment) {
-		this.dateOfEmployment = TimeOperations.parseDateFromString(dateOfEmployment);
+		this.dateOfEmployment = LocalDate.parse(dateOfEmployment);
 	}
 
 	public List<WeeklyReport> getWeeklyReports() {
