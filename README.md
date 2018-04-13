@@ -2,7 +2,7 @@
 This project is a maven based web app I have started developing as my final project for Coders Lab's course for java web developers.
 The main puprose of this app is to keep record of worktime spent on particular projects by particular workers in a company
 
-A user selects a project and inputs the time range (in hh:mm format) that they spent working on a given project.
+A user selects a project and inputs the time range (in hh:mm format) that they've spent working on a given project.
 All data is stored in a MySQL database and later can be used to develop worktime reports that can be useful to asses profitability of a project.
 
 Each partial report registered by a user is contained in a user's daily report and then there are weekly reports that contain daily reports. The entities has been prepared this way to enable reporting flexibility - all data can be easily accesed and future custom reports will be easy to develop having relational database system.
