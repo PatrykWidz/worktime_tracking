@@ -65,6 +65,8 @@ public class DailyReportController {
 	@PostMapping("/{dailyReportId}")
 	public String save(@Valid @ModelAttribute PartialDailyReport partialDailyReport, BindingResult bindingResult, @PathVariable Long dailyReportId) {
 		
+		
+		//TODO: finish form validation - include error messages in the form. Make page load properly when errors occur.
 		if (bindingResult.hasErrors()) {
 			return "dailyReport";
 		}

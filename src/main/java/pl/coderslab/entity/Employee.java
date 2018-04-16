@@ -12,8 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import pl.coderslab.service.TimeOperations;
-
 @Entity
 @Table(name="employees")
 public class Employee {
