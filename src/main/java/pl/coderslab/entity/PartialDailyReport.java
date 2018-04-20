@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import pl.coderslab.service.TimeOperations;
+
 @Entity
 @Table(name = "partial_daily_reports")
 public class PartialDailyReport {
@@ -81,7 +83,9 @@ public class PartialDailyReport {
 		this.project = project;
 	}
 
-	public void setManHours(double manHours) {
+	public void setManHours() {
+		double manHours = TimeOperations.calculateTimeRange(this.startTime, this.endTime);
+		manHours = (double) Math.round(manHours * 100) / 100;
 		this.manHours = manHours;
 	}
 

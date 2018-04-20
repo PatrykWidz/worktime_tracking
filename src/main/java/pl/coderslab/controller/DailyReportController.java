@@ -20,7 +20,6 @@ import pl.coderslab.entity.Project;
 import pl.coderslab.repository.DailyReportRepository;
 import pl.coderslab.repository.PartialDailyReportRepository;
 import pl.coderslab.repository.ProjectRepository;
-import pl.coderslab.service.TimeOperations;
 
 @Controller
 @RequestMapping("/daily-report")
@@ -70,13 +69,9 @@ public class DailyReportController {
 		if (bindingResult.hasErrors()) {
 			return "dailyReport";
 		}
-		
-		//Calculate man-hours by taking start time and end time
-		double manHours = TimeOperations.calculateTimeRange(partialDailyReport.getStartTime(), partialDailyReport.getEndTime());
-		manHours = (double) Math.round(manHours * 100) / 100;
 				
 		//Set man-hours
-		partialDailyReport.setManHours(manHours);
+		partialDailyReport.setManHours();
 		
 		// Assign it to a weeklyReport
 		partialDailyReport.setDailyReport(dailyReportRepo.findById(dailyReportId).get());
